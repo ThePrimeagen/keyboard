@@ -127,7 +127,7 @@ var mpKeyboard = (function() {
     /**
      * Configures a new keyboard
      * @param {{
-     *      onEventCallback: Function,
+     *      onPress: Function,
      *      host: HTMLElement,
      *      onRelease: boolean
      * }} configuration
@@ -142,12 +142,7 @@ var mpKeyboard = (function() {
          * @type {Function}
          * @private
          */
-        this._onEventCallback = configuration.onEventCallback;
-        /**
-         * @type {HTMLElement}
-         * @private
-         */
-        this._host = configuration.host;
+        this._onPress = configuration.onPress;
 
         /**
          * If the key is being released, send to the end user what key is release
@@ -156,6 +151,12 @@ var mpKeyboard = (function() {
          * @private
          */
         this._onRelease = configuration.onRelease || false;
+
+        /**
+         * @type {HTMLElement}
+         * @private
+         */
+        this._host = configuration.host;
 
         this._initialize();
     };
@@ -197,7 +198,7 @@ var mpKeyboard = (function() {
                 }
                 keyStr = '';
             }
-            this._onEventCallback.apply(null, [this._keyResponse(keyStr)]);
+            this._onPress.apply(null, [this._keyResponse(keyStr)]);
         },
 
         /**
@@ -217,7 +218,7 @@ var mpKeyboard = (function() {
             }
 
             if (this._onRelease) {
-                this._onEventCallback.apply(null, [this._keyResponse(keyStr)]);
+                this._onRelease.apply(null, [this._keyResponse(keyStr)]);
             }
         },
 
