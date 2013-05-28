@@ -38,12 +38,6 @@ var mpKeyboard = (function() {
     var INSERT = 'insert';
 
     /**
-     * The set of available modifiers.  Used for searching.
-     * @type {Array}
-     */
-    var AVAILABLE_MODIFIERS = [SHIFT, COMMAND, CTRL, ALT, CAPS_LOCK, ESCAPE, INSERT];
-
-    /**
      * The list of modifier keys.
      * @type {{16: string, 17: string, 18: string, 20: string,
      *         27: string, 45: string}}
@@ -230,7 +224,6 @@ var mpKeyboard = (function() {
          */
         _keyResponse: function(keyString) {
 
-            // If the response is a modifier.
             return {
                 keyString: keyString,
                 modifiers: this.modifiers
